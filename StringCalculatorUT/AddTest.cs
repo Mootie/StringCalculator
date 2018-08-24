@@ -46,5 +46,11 @@ namespace StringCalculatorUT
         {
             Assert.Equal(Calculator.Add("1\n2,3"), 6);
         }
+
+        [Fact]
+        public void VariableDelimiters()
+        {
+            Assert.Equal(Calculator.Add("//;\n" + "1;2"), 3);
+        }
     }
 }
