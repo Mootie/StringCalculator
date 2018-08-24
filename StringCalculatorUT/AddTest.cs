@@ -24,5 +24,21 @@ namespace StringCalculatorUT
         {
             Assert.Equal(Calculator.Add("1,2"), 3);
         }
+
+        [Fact]
+        public void TenNumbers()
+        {
+            string[] numbers = new string[10];
+            int expected = 0;
+            for (int i=0; i<numbers.Length; ++i)
+            {
+                numbers[i] = i.ToString();
+                expected += i;
+            }
+
+            int actual = Calculator.Add(String.Join(",", numbers));
+
+            Assert.Equal(actual, expected);
+        }
     }
 }
