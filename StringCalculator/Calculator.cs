@@ -25,13 +25,19 @@ namespace StringCalculator
 
             string[] tokens = numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
-            int sum = 0;
+            List<int> operands = new List<int>();
             foreach (string token in tokens)
             {
-                int number = Int32.Parse(token);
-                sum += number;
+                operands.Add(Int32.Parse(token));
             }
-            return sum;
+
+            int[] negatives = operands.Where((int operand) => operand < 0).ToArray();
+            if (negatives.Length > 0)
+            {
+                throw new ArgumentException("Negatives not allowed, negatives found: " + String.Join(", ", negatives));
+            }
+
+            return operands.Sum();
         }
         
         private static List<string> ParseDelimiterString(string delimiterString)

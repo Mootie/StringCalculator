@@ -28,8 +28,8 @@ namespace StringCalculatorUT
         [Fact]
         public void TenNumbers()
         {
-            string[] numbers = new string[10];
             int expected = 0;
+            string[] numbers = new string[10];
             for (int i = 0; i < numbers.Length; ++i)
             {
                 numbers[i] = i.ToString();
@@ -51,6 +51,26 @@ namespace StringCalculatorUT
         public void VariableDelimiters()
         {
             Assert.Equal(Calculator.Add("//;\n" + "1;2"), 3);
+        }
+
+        [Fact]
+        public void ThrowExceptionOnNegatives()
+        {
+            string[] expected = new string[] { "-2", "-4" };
+            string exceptionMessage = "";
+            try
+            {
+                Calculator.Add("1,-2,3,-4");
+            }
+            catch (ArgumentException ex)
+            {
+                exceptionMessage = ex.Message;
+            }
+
+            foreach (string expectedString in expected)
+            {
+                Assert.True(exceptionMessage.Contains(expectedString));
+            }
         }
     }
 }
