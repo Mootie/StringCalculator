@@ -74,9 +74,27 @@ namespace StringCalculatorUT
         }
 
         [Fact]
-        public void IgnoreGreaterThan1000()
+        public void IgnoresNumbersGreaterThan1000()
         {
             Assert.Equal(Calculator.Add("2,1001"), 2);
+        }
+
+        [Fact]
+        public void VariableLengthDelimiters()
+        {
+            Assert.Equal(Calculator.Add("//[***]\n1***2***3"), 6);
+        }
+
+        [Fact]
+        public void MulitpleDelimiters()
+        {
+            Assert.Equal(Calculator.Add("//[*][%]\n1*2%3"), 6);
+        }
+
+        [Fact]
+        public void MulitpleVariableLengthDelimiters()
+        {
+            Assert.Equal(Calculator.Add("//[**][%%]\n1**2%%3"), 6);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace StringCalculator
 {
@@ -45,10 +46,24 @@ namespace StringCalculator
         private static List<string> ParseDelimiterString(string delimiterString)
         {
             List<string> delimiters = new List<string>();
-            foreach (char delimiter in delimiterString)
+
+            Regex expr = new Regex(@"\[(.+?)\]");
+            var matches = expr.Matches(delimiterString);
+            if (matches.Count > 0)
             {
-                delimiters.Add(delimiter.ToString());
+                foreach (Match match in matches)
+                {
+                    delimiters.Add(match.Groups[1].Value);
+                }
             }
+            else
+            {
+                foreach (char delimiter in delimiterString)
+                {
+                    delimiters.Add(delimiter.ToString());
+                }
+            }
+
             return delimiters;
         }
     }
