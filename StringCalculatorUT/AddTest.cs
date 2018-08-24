@@ -30,7 +30,7 @@ namespace StringCalculatorUT
         {
             string[] numbers = new string[10];
             int expected = 0;
-            for (int i=0; i<numbers.Length; ++i)
+            for (int i = 0; i < numbers.Length; ++i)
             {
                 numbers[i] = i.ToString();
                 expected += i;
@@ -39,6 +39,12 @@ namespace StringCalculatorUT
             int actual = Calculator.Add(String.Join(",", numbers));
 
             Assert.Equal(actual, expected);
+        }
+
+        [Fact]
+        public void NewlineDelimiter()
+        {
+            Assert.Equal(Calculator.Add("1\n2,3"), 6);
         }
     }
 }

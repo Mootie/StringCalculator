@@ -10,7 +10,7 @@ namespace StringCalculator
     {
         public static int Add(string numbers)
         {
-            List<string> delimiters = new List<string> { "," };
+            List<string> delimiters = new List<string> { "\n", "," };
             string[] tokens = numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
             int sum = 0;
