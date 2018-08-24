@@ -37,7 +37,9 @@ namespace StringCalculator
                 throw new ArgumentException("Negatives not allowed, negatives found: " + String.Join(", ", negatives));
             }
 
-            return operands.Sum();
+            return operands
+                .Where((int operand) => operand <= 1000)
+                .Sum();
         }
         
         private static List<string> ParseDelimiterString(string delimiterString)

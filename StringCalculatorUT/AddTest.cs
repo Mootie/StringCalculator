@@ -72,5 +72,11 @@ namespace StringCalculatorUT
                 Assert.True(exceptionMessage.Contains(expectedString));
             }
         }
+
+        [Fact]
+        public void IgnoreGreaterThan1000()
+        {
+            Assert.Equal(Calculator.Add("2,1001"), 2);
+        }
     }
 }
